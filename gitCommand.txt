@@ -4,3 +4,5 @@ git commit -m "提交说明" //把readme.txt提交到git上，git add 可以多�
 git status //查看当前git状态有没有修改
 git diff //显示修改的内容
 git log //查看修改日志 该日志的话就是commit -m后边的说明
+git reset --hard 923743//后边的参数是版本号，参数也可以是HEAD^,表示返回上一个版本，用于回到某个版本
+git reflog //显示提交的指令，这里可以查看某个版本的版本号
