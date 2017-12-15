@@ -9,4 +9,5 @@ git reflog //显示提交的指令，这里可以查看某个版本的版本号
 git checkout -- fileName //回到最近一次git add或者git commit前的状态
 git rm fileName //删除一个文件  之后要git commit 提交
 ssh-keygen -t rsa -C "youremail@example.com" //创建ssh key用于配置远程仓库 创建之前确保在主目录 cd ~
-git push origin master //提交到仓库
+git push origin master //提交到远程仓库
+git clone git@github.com:michaelliao/gitskills.git //克隆远程仓库，后边的参数michaelliao/gitskills.git是自己Github的远程仓库
