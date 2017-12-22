@@ -1,19 +1,51 @@
 package jianzhioffer.chapter5;
 /**
- * ��Ŀ����������һ�����ֳ��ֵĴ����������鳤�ȵ�һ�룬���ҳ�������֡���������һ������Ϊ9��
- *      ����{1,2,3,2,2,2,5,4,2}����������2�������г�����5�Σ��������鳤�ȵ�һ�룬������2��
- *      ��������������0��
- * ˼·:1.ǳ�Ե�:����һ����¼����times��������������ԭ�����ֵ���������Ҫ�ҵ�ԭ��������ֵ������
- *       ��¼����times,һ�������ݾ�times[i]++������ж� times��������û�д��ԭ���鳤��һ��
- *       ʱ�临�Ӷ�O(N) �ռ临�Ӷ�ΪO(N)
- *     2.���ԭ�����г���һ�������������������һ������λ�����֡���������ҵ��������λ��
- *       Ȼ��������������г��ֵĴ���������һ�����У�û���򷵻�0  
+ * 题目：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的
+ *      数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。
+ *      如果不存在则输出0。
+ * 思路:1.浅显的:构建一个记录数组times，它的索引就是原数组的值。因此首先要找到原数组的最大值，创建
+ *       记录数组times,一旦有数据就times[i]++，最后判断 times的数据有没有大过原数组长度一半
+ *       时间复杂度O(N) 空间复杂度为O(N)
+ *     2.如果原数组有超过一半的数，那数组的排序后一定在中位数出现。因此首先找到数组的中位数
+ *       然后计算它在数组中出现的次数，超过一半则有，没有则返回0  
  *       O(N)/O(NlogN)?
+ *     3.推荐！
+ *       因为采用两个数分别记录上一个数据result和次数times；如果一致，次数加1，如果不一致次数减1；
+ *       当次数为0时，重置result为当前数，times为1；
+ *       因为如果有一半数据相同，则最终该数据会留下来。 
  * @author lzw
- * @date 2017��12��22��
+ * @date 2017年12月22日
  * @version version1.0
  */
 public class MoreThanHalfNum {
+	//˼·3
+	 public int MoreThanHalfNum_Solution(int [] array) {
+	     if(array.length<=0||array==null){
+	         return 0;
+	     }
+	     int result=array[0];
+         int times=1;
+         for(int i=1;i<array.length;i++){
+             if(times==0){
+                 result=array[i];
+                 times=1;
+             }else if(result==array[i]){
+                 times++;
+             }else{
+                 times--;
+             }
+         }
+      int cnt=0;
+         for(int i=0;i<array.length;i++){
+             if(array[i]==result){
+                 cnt++;
+             }
+         }
+    if(cnt>array.length/2){
+        return result;
+    }
+    return 0;
+	    }
 	//˼·1
 /*	   public int MoreThanHalfNum_Solution(int [] array) {
 		     if(array.length<=0||array==null){
@@ -45,7 +77,7 @@ public class MoreThanHalfNum {
 	
 	
 	//˼·2
-	  public int MoreThanHalfNum_Solution(int [] array) {
+	/*  public int MoreThanHalfNum_Solution(int [] array) {
 	      if(array.length<=0||array==null){
 	          return 0;
 	      }
@@ -83,5 +115,7 @@ public class MoreThanHalfNum {
 	        }
 	        ary[start]=pos;
 	        return start;
-	    }
+	    }*/
+	    
+	    
 }
