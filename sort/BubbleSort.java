@@ -1,24 +1,30 @@
-package sort;
+package cn.lzw.sort;
 
+
+/**冒泡排序：在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两个数依次进行比较和调整，让较大的数往下沉，
+ * 			较小的往上冒。即：每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。
+ * 			时间复杂度O(N^2)，稳定
+ * 
+ * @author Lin
+ *
+ */
 public class BubbleSort {
-	/*冒泡排序 时间复杂度为O（n^2）
-	 * 思想：从0位置开始直到最后，相邻两两比较，大的往后，每一次循环都把最大的放到最后的位置
-	 * 注意：外循环终止条件是i>0 第一个位置不用比较了
-	 * 稳定排序
-	 */
-	private static void bubbleSort(int[] numsAry) {
-	  	for (int i = numsAry.length-1; i >0 ; i--) {
-			for (int j = 0; j < i; j++) {
-				if(numsAry[j]>numsAry[j+1]) {
-					swap(numsAry,j,j+1);
+
+	public static void sort(int[] ary) {
+		for(int i=ary.length-1;i>0;i--) {
+			for(int j=0;j<i;j++) {
+				if(ary[j]>ary[j+1]) {
+					swap(ary,j,j+1);
 				}
 			}
 		}
+		
 	}
 	
-	private static void swap(int[] numsAry, int j, int i) {
-		  numsAry[j]=numsAry[j]^numsAry[i];
-		  numsAry[i]=numsAry[j]^numsAry[i];
-		  numsAry[j]=numsAry[j]^numsAry[i];
-		}
+	
+	public static void swap(int[] ary,int i,int j) {
+		ary[i]=ary[i]^ary[j];
+		ary[j]=ary[i]^ary[j];
+		ary[i]=ary[i]^ary[j];
+	}
 }

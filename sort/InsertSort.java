@@ -1,24 +1,41 @@
-package sort;
+package cn.lzw.sort;
+/**直接插入排序：
+ * 			在要排序的一组数中，假设前面(n-1)[n>=2] 个数已经是排
 
+			好顺序的，现在要把第n个数插到前面的有序数中，使得这n个数
+
+			也是排好顺序的。如此反复循环，直到全部排好顺序。
+			时间复杂度N^2,稳定
+ * 
+ * @author Lin
+ *
+ */
 public class InsertSort {
-	/*插入排序 ：O（n^2）
-	 * 假定前边分为已排序，然后取排序后边一个新元素，与前边逐一比对，如果比前小就交换，直到遇到比前大停止
-	 * 稳定排序
-	 */
-	private static void insertSort(int[] numsAry) {
-		for (int i = 0; i < numsAry.length-1; i++) {
-			for (int j = i+1; j>0; j--) {
-				if(numsAry[j]<numsAry[j-1]) {
-					swap(numsAry,j,j-1);
+
+	
+	public static void sort(int[] ary) {
+		for(int i=0;i<ary.length;i++) {
+			for(int j=i;j>0;j--) {
+				if(ary[j]<ary[j-1]) {
+					swap(ary,j,j-1);
 				}else {
 					break;
 				}
 			}
 		}
+		
+		
+		
+		
 	}
-	private static void swap(int[] numsAry, int j, int i) {
-		  numsAry[j]=numsAry[j]^numsAry[i];
-		  numsAry[i]=numsAry[j]^numsAry[i];
-		  numsAry[j]=numsAry[j]^numsAry[i];
-		}
+	
+	
+	
+	
+	
+	public static void swap(int[] ary,int i,int j) {
+		ary[i]=ary[i]^ary[j];
+		ary[j]=ary[i]^ary[j];
+		ary[i]=ary[i]^ary[j];
+	}
 }

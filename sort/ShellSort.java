@@ -1,25 +1,37 @@
-package sort;
+package cn.lzw.sort;
 
+
+/**
+ * 希尔排序：
+ * 			算法先将要排序的一组数按某个增量d（n/2,n为要排序数的个数）分成若干组，每组中记录的下标相差d.
+ * 			对每组中全部元素进行直接插入排序，然后再用一个较小的增量（d/2）对它进行分组，在每组中再进行直接插入排序。
+ * 			当增量减到1时，进行直接插入排序后，排序完成。
+ * 			时间复杂度 O（Nlog2N），不稳定
+ * @author Lin
+ *
+ */
 public class ShellSort {
-	/*希尔排序 O（nlogn）
-	 * 希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，
-	 * 当增量减至1时，整个文件恰被分成一组，算法便终止，选择增量gap=length/2
-	 * 不稳定排序
-	 */
-	private static void shellSort(int[] numsAry) {
-	  for(int gap=numsAry.length/2;gap>0;gap/=2) {
-		  for(int i=gap;i<numsAry.length;i++) {
-			  int j=i;
-			  while(j-gap>=0&&numsAry[j]<numsAry[j-gap]) {
-				  swap(numsAry,j,j-gap);
-				  j-=gap;
-			  }
-		  }
-	  }
-	}
-	private static void swap(int[] numsAry, int j, int i) {
-		  numsAry[j]=numsAry[j]^numsAry[i];
-		  numsAry[i]=numsAry[j]^numsAry[i];
-		  numsAry[j]=numsAry[j]^numsAry[i];
+
+	public static void sort(int[] ary) {
+//		int gap=(int) Math.ceil(ary.length)/2;
+//		System.out.println(gap);
+		for(int gap=ary.length/2;gap>0;gap/=2) {
+			for(int i=ary.length-1;i>=(ary.length-1-gap);i--) {
+				for(int j=i;j>=gap;j-=gap) {
+					if(ary[j]<ary[j-gap]) {
+						swap(ary,j,j-gap);
+					}else {
+						break;
+					}
+				}
+			}
 		}
+	}
+	
+	
+	public static void swap(int[] ary,int i,int j) {
+		ary[i]=ary[i]^ary[j];
+		ary[j]=ary[i]^ary[j];
+		ary[i]=ary[i]^ary[j];
+	}
 }
